@@ -58,6 +58,7 @@ nav .links .nav-link:hover {
     flex-direction: row;   
     gap: 1rem;
   }
+}
 
 .notify-btn {
   display: inline-block !important; 
