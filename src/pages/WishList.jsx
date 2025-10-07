@@ -1,13 +1,14 @@
 import React from "react";
 import { useWishList } from "../context/WishListContext"
 import { useCart } from "../context/CartContext";
+import "./WishList.css";
 
 export const WishList = () => {
     const { wish, removeFromList } = useWishList();
     const { addToCart } = useCart();
 
     return(
-        <div className="App container">
+        <div className="wishlist-page wishlist-container container py-5">
             <h2 className="mb-4"> Your WishList </h2>
 
             {wish.length === 0 ? ( 
@@ -29,8 +30,8 @@ export const WishList = () => {
                     <p className="card-text"><strong>Rating: </strong>{pData.rating}</p>
                     <p className="card-text"><strong>Price: </strong>{pData.price} $</p>
                   <div className="space">
-                      <button type="button" className="btn btn-secondary" onClick={() => removeFromList(pData.brand)}>Remove</button>
-                      <button type="button" className="btn btn-secondary" onClick={() => addToCart(pData)}>Add To Cart</button>
+                      <button type="button" className="btn btn-danger" onClick={() => removeFromList(pData.brand)}>Remove</button>
+                      <button type="button" className="btn btn-primary" onClick={() => addToCart(pData)}>Add To Cart</button>
                   </div>
                 </div>
               </div>

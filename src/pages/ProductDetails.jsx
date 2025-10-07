@@ -8,7 +8,7 @@ import { useWishList } from "../context/WishListContext";
 
 export const ProductDetails = () => {
     const {data} = useFetch(
-    "https://first-stop-db.vercel.app/products"
+    "https://first-stop-app-data-base.vercel.app/products"
   );
 
     const { addToCart } = useCart();
@@ -39,7 +39,7 @@ export const ProductDetails = () => {
     <div className="col-md-4">
       <img src={productDetails.src} className="img-fluid rounded-start cardProductImg" alt={productDetails.brand} />
     </div>
-    <div className="col-md-8">
+    <div className="col-md-10">
       <div className="cardProduct-body">
         <h4 className="cardProduct-title">{productDetails.brand}</h4>
         <p className="cardProduct-text"><strong>Details: </strong>{productDetails.details}</p>

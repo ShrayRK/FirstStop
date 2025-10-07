@@ -35,7 +35,7 @@ export default function Nav() {
             setSearchQuery("");
             setSearchTerm("");
         } else {
-            setSearchTerm(searchQuery); // Keep search term if on product list
+            setSearchTerm(searchQuery); 
         }
     }, [location.pathname, setSearchQuery, searchQuery]);
   

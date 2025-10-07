@@ -19,6 +19,7 @@ import { SearchProvider } from './context/SearchContext'
 import { LoginProvider } from './context/LoginContext'
 
 function App() {
+  
   return (
     <LoginProvider>
     <CartProvider>

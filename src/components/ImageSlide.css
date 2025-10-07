@@ -1,16 +1,16 @@
-.carousel {
+.image-slide .carousel {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;          /* full width */
-    max-width: 1200px;    /* optional max width for desktop */
-    height: 250px;        /* mobile-friendly default height */
+    width: 100%;          
+    max-width: 1600px;    
+    height: 250px;       
     overflow: hidden;
     margin: 2rem auto;
 }
 
-.slide {
+.image-slide .slide {
     border-radius: 0.5rem;
     box-shadow: 0px 0px 7px #666;
     width: 100%;
@@ -19,11 +19,11 @@
     transition: opacity 0.5s ease-in-out;
 }
 
-.slide-hidden {
+.image-slide .slide-hidden {
     display: none;
 }
 
-.arrow {
+.image-slide .arrow {
     position: absolute;
     width: 2rem;
     height: 2rem;
@@ -33,15 +33,15 @@
     z-index: 2;
 }
 
-.arrow-left {
+.image-slide .arrow-left {
     left: 0.5rem;
 }
 
-.arrow-right {
+.image-slide .arrow-right {
     right: 0.5rem;
 }
 
-.indicators {
+.image-slide .indicators {
     display: flex;
     justify-content: center;
     position: absolute;
@@ -50,7 +50,7 @@
     gap: 0.3rem;
 }
 
-.indicator {
+.image-slide .indicator {
     background-color: white;
     height: 0.5rem;
     width: 0.5rem;
@@ -61,7 +61,7 @@
     cursor: pointer;
 }
 
-.indicator-inactive {
+.image-slide .indicator-inactive {
     background-color: grey;
 }
 
@@ -69,10 +69,10 @@
 
 /* Tablets */
 @media (min-width: 600px) {
-    .carousel {
+    .image-slide .carousel {
         height: 350px;
     }
-    .arrow {
+    .image-slide .arrow {
         width: 2.5rem;
         height: 2.5rem;
     }
@@ -80,10 +80,10 @@
 
 /* Desktop */
 @media (min-width: 1024px) {
-    .carousel {
-        height: 400px;      /* original desktop height */
+    .image-slide .carousel {
+        height: 400px;     
     }
-    .arrow {
+    .image-slide .arrow {
         width: 3rem;
         height: 3rem;
     }

@@ -1,4 +1,3 @@
-
 .Checkout {
   font-family: sans-serif;
   text-align: center;
@@ -6,6 +5,10 @@
 
 .checkout-container {
   padding: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .checkout-title {
@@ -13,36 +16,47 @@
   font-weight: 600;
   margin-bottom: 2rem;
   color: #222;
+  font-size: 1.8rem;
 }
 
 .checkout-card {
   border: none;
   border-radius: 0.75rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  height: 100%;
+  height: auto;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
+  align-items: center;           /* ✅ centers horizontally */
+  justify-content: center;       /* ✅ centers vertically */
   margin: 0 auto;
+  max-width: 600px;
+  background-color: #fff;
+  padding: 2rem;
+  text-align: center;            /* ✅ center text inside */
 }
 
 .checkout-card .card-body {
- display: flex;
+  display: flex;
   flex-direction: column;
-  align-items: flex-start; 
-  justify-content: flex-start;
-  text-align: left; 
+  align-items: center;           /* ✅ center horizontally */
+  justify-content: center;       /* ✅ center vertically */
+  text-align: center;
+  width: 100%;
+  padding: 1.5rem 1rem;
 }
 
 .checkout-card h4 {
   font-weight: 500;
   margin-bottom: 1rem;
   color: #333;
+  text-align: center;
 }
 
 .form-check-label {
   margin-left: 0.5rem;
   font-size: 0.95rem;
   color: #444;
+  text-align: center;
 }
 
 #tempNewShippingAddress {
@@ -51,6 +65,8 @@
   border-radius: 0.5rem;
   border: 1px solid #ccc;
   padding: 0.5rem;
+  width: 100%;
+  text-align: center;
 }
 
 .checkout-container .alert {
@@ -67,4 +83,72 @@
   font-weight: 600;
   border-radius: 0.5rem;
   padding: 0.75rem;
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.place-order-btn:hover {
+  background-color: #0056b3;
+}
+
+/* ✅ Tablet & Mobile optimization */
+@media (max-width: 768px) {
+  .checkout-container {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .checkout-card {
+    max-width: 95%;
+    padding: 1.5rem;
+  }
+
+  .checkout-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .checkout-card h4 {
+    font-size: 1.1rem;
+  }
+
+  .form-check-label,
+  #tempNewShippingAddress,
+  .checkout-container .alert {
+    font-size: 0.9rem;
+  }
+
+  .place-order-btn {
+    font-size: 1rem;
+    padding: 0.7rem;
+  }
+}
+
+/* ✅ Extra small mobile (phones < 480px) */
+@media (max-width: 480px) {
+  .checkout-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .checkout-card {
+    max-width: 100%;
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+
+  .checkout-title {
+    font-size: 1.3rem;
+  }
+
+  .checkout-card h4 {
+    font-size: 1rem;
+  }
+
+  .place-order-btn {
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
 }

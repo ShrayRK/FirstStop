@@ -15,6 +15,7 @@ export const ImageSlide = ({img}) => {
     }
 
     return (
+        <div className="image-slide">
             <div className="carousel">
             <BsArrowLeftCircleFill className="arrow arrow-left" onClick={prevSlide}/>
             {img.map((image, index) => {
@@ -28,6 +29,7 @@ export const ImageSlide = ({img}) => {
                 )
             })}
         </span>
+        </div>
         </div>    
     );
 };

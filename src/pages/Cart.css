@@ -1,0 +1,188 @@
+/* ✅ Scope using .cart-container instead of .cart.container to avoid Bootstrap conflicts */
+.cart-container {
+  font-family: "Poppins", sans-serif;
+  padding: 2rem 1rem;
+  text-align: center;
+  background: #f9f9fb;
+  min-height: 100vh;
+}
+
+/* ---------- Headings ---------- */
+.cart-container h2 {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+/* ---------- Empty Cart Text ---------- */
+.cart-container p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* ---------- List Styling ---------- */
+.cart-container .list-group {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.cart-container .list-group-item {
+  background: #fff;
+  border: none;
+  border-radius: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cart-container .list-group-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- Product Details ---------- */
+.cart-container .list-group-item h5 {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+  justify-self: flex-start;
+}
+
+.cart-container .list-group-item p {
+  margin: 0.25rem 0;
+  color: #666;
+  font-size: 0.95rem;
+  justify-self: flex-start;
+}
+
+/* ---------- Buttons ---------- */
+.cart-container .btn {
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.cart-container .btn-secondary {
+  background-color: #6c757d;
+  border: none;
+}
+
+.cart-container .btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* ---------- Empty Cart Button ---------- */
+.cart-container .empty-cart-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.cart-container .empty-cart-btn:hover {
+  background-color: #c82333;
+}
+
+/* ---------- Total Section ---------- */
+.cart-container .total-section {
+  background-color: #f0f4f8;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #d9e2ec;
+}
+
+.cart-container .total-section h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0;
+}
+
+.cart-container .action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ✅ Pulse Animation
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse {
+  animation: pulse 0.3s ease-in-out;
+} */
+
+/* ---------- Responsive Design ---------- */
+@media (max-width: 768px) {
+  .cart-container {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .cart-container h2 {
+    font-size: 1.6rem;
+  }
+
+  .cart-container .list-group-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cart-container .list-group-item h5 {
+    font-size: 1.1rem;
+  }
+
+  .cart-container .list-group-item p {
+    font-size: 0.9rem;
+  }
+
+  .cart-container .d-flex.flex-column.gap-2 {
+    flex-direction: row;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .cart-container .total-section {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .cart-container .total-section h4 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cart-container h2 {
+    font-size: 1.4rem;
+  }
+
+  .cart-container .list-group-item {
+    padding: 1rem;
+  }
+
+  .cart-container .btn {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
+  }
+}

@@ -5,10 +5,11 @@ import { useCart } from "../context/CartContext";
 import { useWishList } from "../context/WishListContext";
 import { useSearch } from "../context/SearchContext";
 import useFetch from "../useFetch";
-import "../App.css"
+import "./Products.css";
+
 export const Products = () => {
    const {data, loading} = useFetch(
-    "https://first-stop-db.vercel.app/products"
+    "https://first-stop-app-data-base.vercel.app/products"
   );
 
     const { addToCart } = useCart();
@@ -63,15 +64,15 @@ export const Products = () => {
   }, [category, selectedCategory, selectedRating, selectedPrice, searchQuery, data]);
    
     return (
-      <>
-        <div className="App container">
-            <div className="py-4">
+      <div className="Products">
+        <div className="container products-container">
+            <div className="py-4 text-center">
               <p className="display-3"><strong><u>{category || "All products"}</u></strong></p>
             </div>
               {!category && (
-                <>
-                <div className="pb-4 row">
-              <div className="col-md-4">
+                <div className="filters-section mb-5">
+                <div className="row g-4">
+              <div className="col-md-4 col-12">
                     <label htmlFor="categoryFilter"><h2>Product By Category</h2></label>
               <select name="categoryFilter" 
               id="categoryFilter" 
@@ -87,7 +88,7 @@ export const Products = () => {
               <option value="Beauty">Beauty</option>
               </select>
               </div>
-              <div className="col-md-4">
+              <div className="col-md-4 col-12">
                 <label htmlFor="ratingFilter"><h2>Rating</h2></label>
               <select name="rating" id="rating"
               value={selectedRating}
@@ -99,7 +100,7 @@ export const Products = () => {
               <option value="7-10">7-10</option>
               </select>
               </div>
-               <div className="col-md-4">
+               <div className="col-md-4 col-12">
                 <label htmlFor="priceFilter"><h2>Price</h2></label>
               <select name="price" id="price"
               value={selectedPrice}
@@ -112,7 +113,7 @@ export const Products = () => {
               </select>
               </div>
               </div>
-                </>
+                </div>
               )}
                <div className="row">
                 {productData.length === 0 ? (
@@ -126,11 +127,11 @@ export const Products = () => {
                 return (
                   <div className="col-md-6 mb-4" key={pData.brand}>
                    <div className="card">
-              <div className="row g-0">
-                  <div className="col-md-4">
+              <div className="row">
+                  <div className="col-md-6">
                     <img src={pData.src} alt={pData.brand} className="img-fluid rounded-start"/>
                   </div>
-              <div className="col-md-8">
+              <div className="col-md-6">
                 <div className="card-body">
                     <h5 className="card-title pb-2">{pData.brand}</h5>
                     <p className="card-text"><strong>Rating: </strong>{pData.rating}</p>
@@ -150,6 +151,6 @@ export const Products = () => {
                  )}
               </div>
         </div>
-        </>
+        </div>
     )
 }
