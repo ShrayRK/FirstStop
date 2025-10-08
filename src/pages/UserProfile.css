@@ -16,7 +16,7 @@ body {
   display: flex;
   flex-direction: column;   /* stack on mobile */
   margin-bottom: 2rem;
-  background-color: rgba(255, 255, 255, 0.452)
+  background-color: rgba(255, 255, 255, 0.452);
   border-radius: 8px;
   overflow: hidden;
 }
