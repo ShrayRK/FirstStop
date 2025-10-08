@@ -19,11 +19,15 @@ export const Cart = () => {
                   <ul className="list-group">
   {cart.map((pData) => (
     <li className="list-group-item d-flex justify-content-between align-items-center" key={pData.brand}>
-      <div>
+      <div className="col-4">
+        <img className="cartImg" src={pData.src} alt={pData.brand} />
+      </div>
+      <div className="col-4">
         <h5 className="mb-1">{pData.brand}</h5>
         <p className="mb-1"><strong>Price:</strong> {pData.price} $</p>
         <p className="mb-1"><strong>Quantity:</strong> {pData.qty}</p>
       </div>
+      
       <div className="d-flex flex-column gap-2">
         <button 
           type="button" 

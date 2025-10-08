@@ -29,7 +29,7 @@ export const WishList = () => {
                     <h5 className="card-title pb-2">{pData.brand}</h5>
                     <p className="card-text"><strong>Rating: </strong>{pData.rating}</p>
                     <p className="card-text"><strong>Price: </strong>{pData.price} $</p>
-                  <div className="space">
+                  <div className="space pt-5">
                       <button type="button" className="btn btn-danger" onClick={() => removeFromList(pData.brand)}>Remove</button>
                       <button type="button" className="btn btn-primary" onClick={() => addToCart(pData)}>Add To Cart</button>
                   </div>

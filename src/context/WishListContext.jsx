@@ -1,4 +1,6 @@
 import { createContext, useContext, useState } from "react";
+import { toast } from 'react-toastify';
+
 
 
 const WishListContext = createContext();
@@ -20,6 +22,7 @@ export const WishListProvider = ({ children }) => {
             }
             return [...prevWish, {...product, isInWishlist: true }];
         });
+        toast("Added to Wishlist.🎉")
     };
 
 

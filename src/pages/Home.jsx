@@ -40,8 +40,10 @@ export const Home = () => {
               {data.map((image) => {
                 return (
                   <div className="col-md-4" key={image.title}>
-                    
-                    <Link to={`/productList/${image.title}`} className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><img src={image.src} alt={image.title} className="img img-fluid"/><p className="display-6 pb-4">{image.title}</p></Link>
+                    <Link to={`/productList/${image.title}`} className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+                    <img src={image.src} alt={image.title} className="img img-fluid"/>
+                    <p className="display-6 pb-4">{image.title}</p>
+                    </Link>
                   </div>
                 )
               })}

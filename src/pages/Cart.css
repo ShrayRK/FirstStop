@@ -58,6 +58,13 @@
   justify-self: flex-start;
 }
 
+/* ---------- Image ------------*/
+.cart-container .cartImg {
+  width: 100%;
+  height: 175px;
+  object-fit: contain; 
+}
+
 /* ---------- Buttons ---------- */
 .cart-container .btn {
   font-size: 0.9rem;
@@ -156,6 +163,11 @@
     font-size: 0.9rem;
   }
 
+  .cart-container .cartImg {
+    border-radius: 1rem 1rem 0 0;
+    height: 220px;
+  }
+
   .cart-container .d-flex.flex-column.gap-2 {
     flex-direction: row;
     gap: 0.5rem;
@@ -179,6 +191,10 @@
 
   .cart-container .list-group-item {
     padding: 1rem;
+  }
+
+  .cart-container .cartImg {
+    height: 200px;
   }
 
   .cart-container .btn {

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import { useLogin } from "../context/LoginContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Checkout.css"
+import { toast, ToastContainer } from "react-toastify";
 
 export const Checkout = () => {
     const { cart, emptyCart } = useCart();
     const { user, isLoggedIn, addAddress } = useLogin();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [selectedAddress, setSelectedAddress] = useState("");
     const [tempNewAddressInput, setTempNewAddressInput] = useState(""); 
@@ -17,7 +19,7 @@ export const Checkout = () => {
 
     useEffect(() => {
         if (!isLoggedIn) {
-            navigate("/login");
+            navigate("/login", {state: {from: location.pathname } });
         }
         if (cart.length === 0 && !orderPlaced) {
             navigate("/cart"); 
@@ -26,7 +28,7 @@ export const Checkout = () => {
         if (addresses.length > 0 && !selectedAddress) {
             setSelectedAddress(addresses[0]);
         }
-    }, [isLoggedIn, cart, navigate, orderPlaced, addresses, selectedAddress]);
+    }, [isLoggedIn, cart, navigate, orderPlaced, addresses, location]);
 
     if (!isLoggedIn || cart.length === 0) {
         return null; 
@@ -38,27 +40,31 @@ export const Checkout = () => {
         event.preventDefault();
 
         let finalShippingAddress = selectedAddress;
-        if (selectedAddress === "new" || addresses.length === 0 && tempNewAddressInput.trim() !== "") {
+        if ((selectedAddress === "new" || addresses.length === 0) && tempNewAddressInput.trim() !== "") {
             finalShippingAddress = tempNewAddressInput.trim();
 
             addAddress(finalShippingAddress)
         }
 
         if (!finalShippingAddress || finalShippingAddress.trim() === "") {
-            alert("Please select or enter a shipping address.");
+            toast.error("Please select or enter a shipping address.");
             return;
         }
 
         console.log("Placing order with address:", finalShippingAddress);
         console.log("Order details:", cart);
 
-
         emptyCart();
-        setOrderPlaced(true);
-        alert("Order placed successfully!");
-        navigate("/order-confirmation"); 
-    };
 
+        setOrderPlaced(true);
+
+        toast.success("Order placed successfully!");
+        
+        setTimeout(() => {
+          navigate("/order-confirmation")}, 2000);
+        
+    };
+      
     return (
        <div className="Checkout">
          <div className="checkout-container container py-5">
@@ -165,13 +171,14 @@ export const Checkout = () => {
       <button
         type="submit"
         className="btn btn-success btn-lg w-100 place-order-btn"
-        disabled={
-          !(selectedAddress && selectedAddress !== "new") &&
-          !(
-            (selectedAddress === "new" || addresses.length === 0) &&
-            tempNewAddressInput.trim() !== ""
-          )
-        }
+       disabled={
+  !(
+    (selectedAddress && selectedAddress !== "new") ||
+    ((selectedAddress === "new" || addresses.length === 0) &&
+     tempNewAddressInput.trim() !== "")
+  )
+}
+
       >
         Place Order
       </button>
@@ -180,7 +187,11 @@ export const Checkout = () => {
 </form>
 
             )}
+             
         </div>
+        if(setOrderPlaced){
+          <ToastContainer />
+        }
        </div>
     );
 };

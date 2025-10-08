@@ -39,8 +39,8 @@
 /* ---------- Product Image ---------- */
 .wishlist-container img {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  height: 250px;
+  object-fit: contain;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
 }

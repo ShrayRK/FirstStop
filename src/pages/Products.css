@@ -127,6 +127,13 @@
   transform: scale(1.03);
 }
 
+.sort-section {
+  max-width: 500px;
+  margin: 0 auto;
+  padding-bottom: 3rem;
+  text-align: center;
+}
+
 /* ---------- Loading / No Product ---------- */
 .Products .text-center {
   color: #555;

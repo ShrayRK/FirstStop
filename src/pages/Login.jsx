@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { useLogin } from "../context/LoginContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 export const Login = () => {
   const {loginUser, isLoggedIn } = useLogin();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const from = location.state?.from || "/";
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
@@ -22,14 +26,14 @@ export const Login = () => {
     const success = loginUser(name, password);
 
     if(success){
-        navigate("/");
+        navigate(from, { replace: true });
     } else {
-        setError("Login failed. Please check your credntials.")
+        setError("Login failed. Please check your credntials.");
     }
 };
 
     if (isLoggedIn) {
-        navigate("/")
+        navigate(from, {replace: true});
         return null;
     }
 
@@ -58,6 +62,8 @@ export const Login = () => {
             {error && <div className="alert alert-danger">{error}</div>}
             <button type="submit" className="btn btn-primary">Login</button>
         </form>
+
+        <ToastContainer />
        </div>
     )
 };

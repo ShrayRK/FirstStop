@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import { useCart } from "../context/CartContext";
 import { useWishList } from "../context/WishListContext";
@@ -18,9 +19,10 @@ export const Products = () => {
     const { category } = useParams();
 
     const [productData, setProductData] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState("All")
+    const [selectedCategory, setSelectedCategory] = useState("All");
     const [selectedRating, setSelectedRating] = useState("All"); 
-    const [selectedPrice, setSelectedPrice] = useState("All")
+    const [selectedPrice, setSelectedPrice] = useState("All");
+    const [sortOrder, setSortOrder] = useState("None");
 
   useEffect(() => {
 
@@ -60,8 +62,17 @@ export const Products = () => {
           filtered = filtered.filter((pData) => pData.price >= 500);
         }
     }
+
+    if (sortOrder !== "None"){
+        if(sortOrder === "LowToHigh"){
+          filtered = [...filtered].sort((a,b) => a.price - b.price);
+        } else if (sortOrder === "HighToLow"){
+          filtered = [...filtered].sort((a,b) => b.price - a.price)
+        }
+    }
+
     setProductData(filtered);
-  }, [category, selectedCategory, selectedRating, selectedPrice, searchQuery, data]);
+  }, [category, selectedCategory, selectedRating, selectedPrice, searchQuery, sortOrder, data]);
    
     return (
       <div className="Products">
@@ -69,6 +80,18 @@ export const Products = () => {
             <div className="py-4 text-center">
               <p className="display-3"><strong><u>{category || "All products"}</u></strong></p>
             </div>
+              {category && (
+                <div className="sort-section mb-4">
+                   <label htmlFor="sortPrice"><h2>Sort by Price</h2></label>
+                   <select id="sortPrice" value={sortOrder}
+                   onChange={(e) => setSortOrder(e.target.value)}
+                   className="p-3 form-control text-center fw-bold">
+                    <option value="None">None</option>
+                    <option value="LowToHigh">Price: Low to High</option>
+                    <option value="HighToLow">Price: High to Low</option>
+                   </select> 
+                </div>
+              )}
               {!category && (
                 <div className="filters-section mb-5">
                 <div className="row g-4">
@@ -151,6 +174,7 @@ export const Products = () => {
                  )}
               </div>
         </div>
+         <ToastContainer />
         </div>
     )
 }
