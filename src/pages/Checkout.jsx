@@ -196,9 +196,7 @@ export const Checkout = () => {
             )}
              
         </div>
-        if(setOrderPlaced){
           <ToastContainer />
-        }
        </div>
     );
 };
