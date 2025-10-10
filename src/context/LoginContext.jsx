@@ -26,7 +26,8 @@ export const LoginProvider = ({children}) => {
     const newUser = {
         name,
         password,
-        addresses: user?.addresses || [], 
+        addresses: user?.addresses || [],
+        order: [], 
     };
     setUser(newUser);
     setIsLoggedIn(true);
@@ -76,8 +77,15 @@ export const LoginProvider = ({children}) => {
       });
   };
 
+  const addOrder = (order) => {
+    setUser((prev) => ({
+      ...prev, 
+      orders: [...(prev.orders || []), order],
+    }));
+  };
+
   return (
-     <LoginContext.Provider value={{ user, isLoggedIn, loginUser, logoutUser, addAddress, removeAddress, updateAddress }}>
+     <LoginContext.Provider value={{ user, isLoggedIn, loginUser, logoutUser, addAddress, removeAddress, updateAddress, addOrder }}>
         {children}
     </LoginContext.Provider>
   )

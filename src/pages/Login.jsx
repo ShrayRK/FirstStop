@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLogin } from "../context/LoginContext";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Login = () => {
   const {loginUser, isLoggedIn } = useLogin();
@@ -10,27 +11,31 @@ export const Login = () => {
 
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const from = location.state?.from || "/";
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
-    setError("");
 
     if(name.trim() === "" || password.trim() === ""){
-        setError("Please enter both username and password.")
+        toast.error("Please enter both username and password.")
         return;
     }
 
-    const success = loginUser(name, password);
-
-    if(success){
-        navigate(from, { replace: true });
-    } else {
-        setError("Login failed. Please check your credntials.");
-    }
+    const result = loginUser(name, password);
+    setSuccess(result);
 };
+
+    useEffect(() => {
+        if(success === true) {
+        toast.success("Login successful", {
+            onClose: () => navigate(from, { replace: true }),
+        });
+    } else {
+        toast.error("Login failed. Please check your credntials.");
+    }
+        }, [success, navigate, from]);
 
     if (isLoggedIn) {
         navigate(from, {replace: true});
@@ -38,7 +43,7 @@ export const Login = () => {
     }
 
     return (
-       <div className="App container py-5">
+       <div className="App container py-5 col-6">
         <h2 className="mb-4">Login</h2>
         <form onSubmit={handleLoginSubmit} className="login-form">
             <div className="mb-3">
@@ -59,10 +64,8 @@ export const Login = () => {
                 onChange={(e)=> setPassword(e.target.value)} 
                 />
             </div>
-            {error && <div className="alert alert-danger">{error}</div>}
             <button type="submit" className="btn btn-primary">Login</button>
         </form>
-
         <ToastContainer />
        </div>
     )

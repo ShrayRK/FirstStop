@@ -4,6 +4,7 @@ import { useCart } from "../context/CartContext";
 import { useSearch } from "../context/SearchContext";
 import { useLogin } from "../context/LoginContext"
 import { useWishList } from "../context/WishListContext";
+import { FaUserCircle } from "react-icons/fa";
 
 export default function Nav() {
     const { cart } = useCart();
@@ -81,7 +82,7 @@ export default function Nav() {
                         ) : (
                             <li className="nav-item">
                                 <Link to="/login" className="nav-link">
-                                    Login
+                                    <FaUserCircle size={22} />
                                 </Link>
                             </li>
                         )}

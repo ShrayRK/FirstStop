@@ -7,7 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 export const Checkout = () => {
     const { cart, emptyCart } = useCart();
-    const { user, isLoggedIn, addAddress } = useLogin();
+    const { user, isLoggedIn, addAddress, addOrder } = useLogin();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -51,9 +51,16 @@ export const Checkout = () => {
             return;
         }
 
-        console.log("Placing order with address:", finalShippingAddress);
-        console.log("Order details:", cart);
+        const orderDetails = {
+          id: Date.now(),
+          items: cart,
+          total: totalAmount,
+          address: finalShippingAddress,
+          date: new Date().toLocaleString(),
+        }
 
+        addOrder(orderDetails);
+        
         emptyCart();
 
         setOrderPlaced(true);
@@ -61,7 +68,7 @@ export const Checkout = () => {
         toast.success("Order placed successfully!");
         
         setTimeout(() => {
-          navigate("/order-confirmation")}, 2000);
+          navigate("/")}, 2000);
         
     };
       
